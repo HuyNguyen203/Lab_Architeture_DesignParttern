@@ -35,11 +35,18 @@ public class EmployeeFactory {
         }
     }
 
-    public class Main {
-        public static void main(String[] args) {
-            Employee employee = EmployeeFactory.createEmployee("Team Leader");
-            employee.handleRequest();
-        }
+    public static void main(String[] args) {
+        Employee employee = EmployeeFactory.createEmployee("Team Leader");
+        employee.handleRequest();
+
+        OfficeEmployee officeEmployee = new OfficeEmployee();
+        officeEmployee.handleRequest();
+
+        TeamLeader teamLeader = new TeamLeader();
+        teamLeader.handleRequest();
+
+        Director director = new Director();
+        director.handleRequest();
     }
 
 }

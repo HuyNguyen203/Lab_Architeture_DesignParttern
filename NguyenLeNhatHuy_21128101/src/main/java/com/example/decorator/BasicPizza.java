@@ -2,11 +2,26 @@ package com.example.decorator;
 
 interface Pizza {
     String getDescription();
+
 }
 
-class BasicPizza implements Pizza {
+public class BasicPizza implements Pizza {
     public String getDescription() {
         return "Basic Pizza";
+    }
+    public static void main(String[] args) {
+        BasicPizza basicPizza = new BasicPizza();
+        System.out.println(basicPizza.getDescription());
+
+        ToppingDecorator toppingDecorator = new ToppingDecorator(basicPizza);
+        System.out.println(toppingDecorator.getDescription());
+
+        SeafoodTopping seafoodTopping = new SeafoodTopping(toppingDecorator);
+        System.out.println(seafoodTopping.getDescription());
+
+        SaltedEggTopping saltedEggTopping = new SaltedEggTopping(seafoodTopping);
+        System.out.println(saltedEggTopping.getDescription());
+
     }
 }
 
@@ -31,7 +46,7 @@ class SeafoodTopping extends ToppingDecorator {
         return pizza.getDescription() + " + Seafood";
     }
 }
-public class SaltedEggTopping extends ToppingDecorator {
+class SaltedEggTopping extends ToppingDecorator {
     public SaltedEggTopping(Pizza pizza) {
         super(pizza);
     }
@@ -39,4 +54,7 @@ public class SaltedEggTopping extends ToppingDecorator {
     public String getDescription() {
         return pizza.getDescription() + " + Salted Egg";
     }
+
+
 }
+
