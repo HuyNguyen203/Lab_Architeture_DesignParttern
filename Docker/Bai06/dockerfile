@@ -1,0 +1,18 @@
+# Stage 1: Build code
+FROM node:18 AS builder
+
+WORKDIR /app
+COPY package.json package-lock.json ./
+RUN npm install
+COPY . .
+RUN npm run build
+
+# Stage 2: Chạy ứng dụng đã build
+FROM node:18-alpine
+
+WORKDIR /app
+COPY --from=builder /app/dist ./dist
+RUN npm install -g serve
+
+EXPOSE 3000
+CMD ["serve", "-s", "dist"]

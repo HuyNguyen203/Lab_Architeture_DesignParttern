@@ -24,6 +24,6 @@ public class Main {
 
         // In doanh thu quán
         shop.printRevenue();
-    
+
     }
 }
